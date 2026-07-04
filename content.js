@@ -50,24 +50,24 @@ function injectStyles() {
 
   injectEffectStyles();
 
-  const penCursorUrl = chrome.runtime.getURL('icons/penCursor.png');
+  const cursorUrl = chrome.runtime.getURL('icons/cursor.png');
   const style = document.createElement('style');
   style.id = STYLE_ID;
   style.textContent = `
     .${HIGHLIGHT_CLASS} {
-      outline: 2px solid #3b82f6 !important;
+      outline: 2px solid #963396 !important;
       outline-offset: 2px !important;
-      background-color: rgba(59, 130, 246, 0.08) !important;
-      cursor: url("${penCursorUrl}") 4 28, pointer !important;
+      background-color: rgba(150, 51, 150, 0.1) !important;
+      cursor: url("${cursorUrl}") 12 12, pointer !important;
       transition: outline-color 0.15s ease, background-color 0.15s ease;
     }
 
     body.afm-selection-active {
-      cursor: url("${penCursorUrl}") 4 28, pointer !important;
+      cursor: url("${cursorUrl}") 12 12, pointer !important;
     }
 
     body.afm-selection-active *:not(.${HIGHLIGHT_CLASS}) {
-      cursor: url("${penCursorUrl}") 4 28, pointer !important;
+      cursor: url("${cursorUrl}") 12 12, pointer !important;
     }
   `;
   document.documentElement.appendChild(style);
@@ -94,8 +94,8 @@ function injectEffectStyles() {
       width: var(--afm-size, 7px) !important;
       height: var(--afm-size, 7px) !important;
       border-radius: 999px !important;
-      background: radial-gradient(circle, #ffffff 0 18%, #fde68a 24% 45%, #60a5fa 58%, transparent 72%) !important;
-      box-shadow: 0 0 10px rgba(96, 165, 250, 0.85), 0 0 18px rgba(253, 230, 138, 0.65) !important;
+      background: radial-gradient(circle, #ffffff 0 18%, #f4b6f4 24% 45%, #963396 58%, transparent 72%) !important;
+      box-shadow: 0 0 10px rgba(150, 51, 150, 0.75), 0 0 18px rgba(244, 182, 244, 0.65) !important;
       transform: translate3d(var(--afm-x), var(--afm-y), 0) scale(1) rotate(0deg) !important;
       animation: afm-sparkle-trail 620ms ease-out forwards !important;
     }
@@ -104,9 +104,9 @@ function injectEffectStyles() {
       width: 12px !important;
       height: 12px !important;
       margin: -6px 0 0 -6px !important;
-      border: 2px solid rgba(96, 165, 250, 0.9) !important;
+      border: 2px solid rgba(150, 51, 150, 0.9) !important;
       border-radius: 999px !important;
-      box-shadow: 0 0 18px rgba(59, 130, 246, 0.9), inset 0 0 12px rgba(253, 230, 138, 0.8) !important;
+      box-shadow: 0 0 18px rgba(150, 51, 150, 0.85), inset 0 0 12px rgba(244, 182, 244, 0.8) !important;
       transform: translate3d(var(--afm-x), var(--afm-y), 0) scale(0.35) !important;
       animation: afm-magic-ring 560ms ease-out forwards !important;
     }
@@ -117,7 +117,7 @@ function injectEffectStyles() {
       margin: -4px 0 0 -4px !important;
       border-radius: 999px !important;
       background: #ffffff !important;
-      box-shadow: 0 0 8px #ffffff, 0 0 16px #facc15, 0 0 24px #38bdf8 !important;
+      box-shadow: 0 0 8px #ffffff, 0 0 16px #f4b6f4, 0 0 24px #963396 !important;
       transform: translate3d(var(--afm-x), var(--afm-y), 0) rotate(var(--afm-angle)) translateX(0) scale(1) !important;
       animation: afm-magic-dot 680ms cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
     }

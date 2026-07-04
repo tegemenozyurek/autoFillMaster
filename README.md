@@ -7,8 +7,11 @@ A Chrome extension that types text naturally into any editable field on any webp
 - **Human-like typing** — Character-by-character input with random delays (40–120 ms), pauses after spaces and punctuation, and rare typo corrections
 - **Universal field support** — Works with `input`, `textarea`, and `contenteditable` elements
 - **Framework compatible** — Uses native property setters and proper DOM events for React, Vue, Angular, and plain HTML sites
-- **Visual field selection** — Crosshair cursor with blue highlight when hovering editable fields
+- **Visual field selection** — Custom cursor with purple highlight when hovering editable fields
 - **Persistent text** — Automatically saves and restores your last entered text
+- **AutoFill history** — Keeps the last 5 texts you used for quick reuse
+- **MyDocs** — Upload and reopen saved PDF documents from the popup
+- **MyLinks** — Save frequently used links and open them later
 - **Cancel anytime** — Press `Esc` or click Cancel to stop immediately
 
 ## Installation
@@ -27,9 +30,11 @@ A Chrome extension that types text naturally into any editable field on any webp
 1. Click the **AutoFillMaster** icon in the Chrome toolbar
 2. Enter or paste the text you want to type in the textarea
 3. Click **Select Field** — the popup closes and selection mode begins
-4. Move your cursor over the page — editable fields highlight with a blue border
+4. Move your cursor over the page — editable fields highlight with a purple border
 5. Click the target field — typing starts automatically
 6. Press **Esc** at any time to cancel
+
+Use **MyDocs** to upload PDFs and **MyLinks** to save links you want to keep handy.
 
 ### Tips
 
@@ -49,8 +54,7 @@ AutoFillMaster/
 ├── content.js          # Selection mode and field targeting
 ├── typingEngine.js     # Human-like typing simulation
 ├── utils.js            # Shared constants and DOM helpers
-├── icons/              # Extension icons (16, 48, 128 px)
-├── assets/             # Reserved for future assets
+├── icons/              # Extension logo and cursor
 └── README.md
 ```
 
@@ -73,7 +77,7 @@ For `<input>` and `<textarea>`, the extension uses the native prototype value se
 
 When activated, the content script:
 
-- Sets the page cursor to crosshair
+- Sets the page cursor to the custom AutoFillMaster cursor
 - Highlights editable elements on hover
 - Captures clicks to start typing in the selected field
 - Listens for `Esc` to cancel
@@ -84,6 +88,7 @@ When activated, the content script:
 |---------------|-----------------------------------------------------|
 | `storage`     | Save and restore the last entered text              |
 | `scripting`   | Inject content script on tabs opened before install |
+| `unlimitedStorage` | Store saved PDFs for MyDocs                  |
 | `<all_urls>`  | Run on any website the user visits                  |
 
 ## Future Improvements

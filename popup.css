@@ -11,76 +11,168 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size: 14px;
-  color: #1e293b;
-  background: #f8fafc;
-  width: 380px;
-  min-height: 320px;
+  color: #2a1830;
+  background:
+    linear-gradient(180deg, rgba(150, 51, 150, 0.12), rgba(255, 255, 255, 0) 210px),
+    #fff8fe;
+  width: 390px;
+  min-height: 480px;
+  cursor: url("icons/cursor.png") 12 12, auto;
 }
 
 .container {
-  padding: 20px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 /* Header */
-.header {
+.topbar {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 12px;
+  min-height: 38px;
 }
 
-.logo {
-  width: 44px;
-  height: 44px;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand-logo {
+  width: 34px;
+  height: 34px;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 9px;
   flex: 0 0 auto;
+  filter: drop-shadow(0 6px 12px rgba(150, 51, 150, 0.2));
 }
 
 .title {
   font-size: 18px;
-  font-weight: 700;
-  color: #0f172a;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  color: #963396;
+  letter-spacing: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.subtitle {
+.github-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(150, 51, 150, 0.18);
+  border-radius: 10px;
+  background: #ffffff;
+  color: #2a1830;
+  cursor: url("icons/cursor.png") 12 12, pointer;
+  flex: 0 0 auto;
+}
+
+.github-icon-btn:hover {
+  background: #f8ebf8;
+}
+
+.github-icon-btn svg {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+}
+
+.mode-switch {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 5px;
+  border: 1px solid rgba(150, 51, 150, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 10px 24px rgba(150, 51, 150, 0.1);
+}
+
+.mode-btn,
+.ghost-btn,
+.upload-btn,
+.btn {
+  font-family: inherit;
+  cursor: url("icons/cursor.png") 12 12, pointer;
+}
+
+.mode-btn {
+  min-height: 38px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #6e3570;
   font-size: 13px;
-  color: #64748b;
-  line-height: 1.4;
+  font-weight: 750;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mode-btn.active {
+  color: #ffffff;
+  background: #963396;
+  box-shadow: 0 8px 18px rgba(150, 51, 150, 0.28);
+}
+
+.panel {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.panel.active {
+  display: flex;
 }
 
 /* Textarea */
-.text-input {
+.text-input,
+.text-field {
   width: 100%;
-  min-height: 160px;
   padding: 14px;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 12px;
+  border: 1.5px solid rgba(150, 51, 150, 0.2);
+  border-radius: 14px;
   font-family: inherit;
   font-size: 14px;
   line-height: 1.55;
-  color: #1e293b;
+  color: #2a1830;
   background: #ffffff;
   resize: vertical;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: text;
 }
 
-.text-input:focus {
+.text-input {
+  min-height: 150px;
+}
+
+.text-field {
+  min-height: 43px;
+}
+
+.text-input:focus,
+.text-field:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  border-color: #963396;
+  box-shadow: 0 0 0 4px rgba(150, 51, 150, 0.14);
 }
 
-.text-input::placeholder {
-  color: #94a3b8;
+.text-input::placeholder,
+.text-field::placeholder {
+  color: #a77cab;
 }
 
 .char-count {
   font-size: 12px;
-  color: #94a3b8;
+  color: #8d5a91;
   text-align: right;
   margin-top: -4px;
 }
@@ -96,11 +188,9 @@ body {
   flex: 1;
   padding: 11px 16px;
   border: none;
-  border-radius: 10px;
-  font-family: inherit;
+  border-radius: 12px;
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
   transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
 }
 
@@ -108,36 +198,156 @@ body {
   transform: scale(0.98);
 }
 
-.btn:disabled {
+.btn:disabled,
+.ghost-btn:disabled,
+.item-action:disabled {
   opacity: 0.55;
   cursor: not-allowed;
   transform: none;
 }
 
 .btn-primary {
-  background: #3b82f6;
+  background: #963396;
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 18px rgba(150, 51, 150, 0.28);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #2563eb;
+  background: #7f287f;
 }
 
 .btn-secondary {
-  background: #f1f5f9;
-  color: #475569;
-  border: 1.5px solid #e2e8f0;
+  background: #f8ebf8;
+  color: #6e3570;
+  border: 1.5px solid rgba(150, 51, 150, 0.18);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: #e2e8f0;
+  background: #f1d9f1;
+}
+
+.section-head,
+.item-row,
+.link-form,
+.upload-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.compact-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.section-head span {
+  font-size: 13px;
+  font-weight: 750;
+  color: #5e2460;
+}
+
+.ghost-btn,
+.item-action,
+.upload-btn {
+  border: 0;
+  border-radius: 10px;
+  background: #f0d8f0;
+  color: #6e3570;
+  font-size: 12px;
+  font-weight: 750;
+  padding: 8px 10px;
+}
+
+.ghost-btn:hover,
+.item-action:hover,
+.upload-btn:hover {
+  background: #e8c7e8;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-btn {
+  width: 100%;
+  text-align: center;
+}
+
+.link-form {
+  align-items: stretch;
+}
+
+.small-btn {
+  flex: 0 0 84px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 180px;
+  overflow: auto;
+  padding: 10px;
+  border: 1.5px solid rgba(150, 51, 150, 0.16);
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.item-list.empty {
+  color: #a77cab;
+  font-size: 13px;
+}
+
+.item-row {
+  align-items: flex-start;
+  padding: 10px;
+  border-radius: 12px;
+  background: #fff8fe;
+}
+
+.item-main {
+  min-width: 0;
+}
+
+.item-title,
+.item-text {
+  color: #4b254f;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.item-text {
+  font-weight: 500;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.item-meta {
+  display: block;
+  margin-top: 2px;
+  color: #8d5a91;
+  font-size: 11px;
+}
+
+.item-actions {
+  display: flex;
+  gap: 6px;
+  flex: 0 0 auto;
 }
 
 /* Status message */
 .status-msg {
   font-size: 12px;
-  color: #64748b;
+  color: #8d5a91;
   min-height: 18px;
   text-align: center;
 }
